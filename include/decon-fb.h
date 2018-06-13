@@ -18,6 +18,7 @@
  ****************************************************************************/
 #ifndef ___SAMSUNG_DECON_H__
 #define ___SAMSUNG_DECON_H__
+#define S3C_FB_MAX_WIN (5)
 #define MAX_DECON_WIN (7)
 #define DECON_WIN_UPDATE_IDX MAX_DECON_WIN
 #define MAX_BUF_PLANE_CNT (3)
@@ -183,6 +184,14 @@ struct decon_win_config_data {
   int fd_odma;
   struct decon_win_config config[MAX_DECON_WIN + 1];
 };
+
+enum disp_pwr_mode {
+	DECON_POWER_MODE_OFF = 0,
+	DECON_POWER_MODE_DOZE,
+	DECON_POWER_MODE_NORMAL,
+	DECON_POWER_MODE_DOZE_SUSPEND,
+};
+
 #define S3CFB_WIN_POSITION _IOW('F', 203, struct decon_user_window)
 #define S3CFB_WIN_SET_PLANE_ALPHA _IOW('F', 204, struct s3c_fb_user_plane_alpha)
 #define S3CFB_WIN_SET_CHROMA _IOW('F', 205, struct s3c_fb_user_chroma)
@@ -190,6 +199,7 @@ struct decon_win_config_data {
 #define S3CFB_GET_ION_USER_HANDLE _IOWR('F', 208, struct s3c_fb_user_ion_client)
 #define S3CFB_WIN_CONFIG _IOW('F', 209, struct decon_win_config_data)
 #define S3CFB_WIN_PSR_EXIT _IOW('F', 210, int)
+#define S3CFB_POWER_MODE _IOW('F', 223, __u32)
 #define EXYNOS_GET_HDMI_CONFIG _IOW('F', 220, struct exynos_hdmi_data)
 #define EXYNOS_SET_HDMI_CONFIG _IOW('F', 221, struct exynos_hdmi_data)
 

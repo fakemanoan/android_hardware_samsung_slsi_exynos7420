@@ -20,7 +20,7 @@ ifeq ($(TARGET_SOC), exynos7420)
 exynos7420_dirs := \
 	mobicore \
 	libgatekeeper \
-	libkeymaster \
+	libkeymaster
 
 #ifeq ($(BOARD_BACK_CAMERA_USES_EXTERNAL_CAMERA), true)
 #exynos7420_dirs += \
