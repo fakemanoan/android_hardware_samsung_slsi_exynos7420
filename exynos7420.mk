@@ -31,3 +31,10 @@ PRODUCT_PACKAGES += \
 	libstagefrighthw \
 	libExynosOMX_Core \
 	libExynosOMX_Resourcemanager
+
+# others
+PRODUCT_PACKAGES += \
+	libcec \
+	libcsc \
+	libfimg \
+	libion_exynos
