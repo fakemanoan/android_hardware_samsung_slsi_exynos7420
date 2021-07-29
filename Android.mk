@@ -22,6 +22,11 @@ exynos7420_dirs := \
 	libgatekeeper \
 	libkeymaster \
 
+ifeq ($(BOARD_USES_EXYNOS7420_GRALLOC), true)
+exynos7420_dirs += \
+	gralloc
+endif
+
 #ifeq ($(BOARD_BACK_CAMERA_USES_EXTERNAL_CAMERA), true)
 #exynos7420_dirs += \
 #	libcamera_external
