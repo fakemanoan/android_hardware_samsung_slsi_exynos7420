@@ -22,8 +22,8 @@ exynos7420_dirs := \
 	libgatekeeper \
 	libkeymaster \
 
-ifeq ($(BOARD_USES_EXYNOS7880_GRALLOC), true)
-exynos7880_dirs += \
+ifeq ($(BOARD_USES_EXYNOS7420_GRALLOC), true)
+exynos7420_dirs += \
 	gralloc
 endif
 
