@@ -73,7 +73,7 @@ static int fb_post(struct framebuffer_device_t* dev, buffer_handle_t buffer)
 
     private_module_t* m = reinterpret_cast<private_module_t*>(dev->common.module);
 #if HWC_EXIST
-    private_handle_t const* hnd = reinterpret_cast<private_handle_t const*>(buffer);
+   //private_handle_t const* hnd = reinterpret_cast<private_handle_t const*>(buffer);
     hwc_callback_queue_t *queue = reinterpret_cast<hwc_callback_queue_t *>(m->queue);
     pthread_mutex_lock(&m->queue_lock);
     if(queue->isEmpty())
