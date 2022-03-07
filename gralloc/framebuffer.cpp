@@ -48,7 +48,7 @@
 
 // numbers of buffers for page flipping
 #define NUM_BUFFERS 2
-#define HWC_EXIST 0
+#define HWC_EXIST 1
 
 struct hwc_callback_entry
 {
