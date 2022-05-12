@@ -20,6 +20,7 @@ include $(CLEAR_VARS)
 MOBICORE_PATH := hardware/samsung_slsi/$(TARGET_SOC)/mobicore
 
 LOCAL_MODULE := keystore.exynos7570
+LOCAL_VENDOR_MODULE := true
 LOCAL_MODULE_RELATIVE_PATH := hw
 
 ifeq ($(BOARD_USES_KEYMASTER_VER1), true)
