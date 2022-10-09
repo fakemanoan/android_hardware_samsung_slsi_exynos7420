@@ -16,34 +16,34 @@
 
 ifeq ($(TARGET_BOARD_PLATFORM), exynos5)
 ifeq ($(TARGET_SLSI_VARIANT), bsp)
-ifeq ($(TARGET_SOC), exynos8890)
+ifeq ($(TARGET_SOC), exynos7420)
 
-ifeq ($(BOARD_USES_EXYNOS8890_MOBICORE), true)
-exynos8890_dirs += \
+ifeq ($(BOARD_USES_EXYNO7420_MOBICORE), true)
+exynos7420_dirs += \
 	mobicore \
 	libgatekeeper \
 	libkeymaster
 endif
 
-ifeq ($(BOARD_USES_EXYNOS8890_GRALLOC), true)
-exynos8890_dirs += \
+ifeq ($(BOARD_USES_EXYNOS7420_GRALLOC), true)
+exynos7420_dirs += \
 	gralloc
 endif
 
 #ifeq ($(BOARD_BACK_CAMERA_USES_EXTERNAL_CAMERA), true)
-#exynos8890_dirs += \
+#exynos7420_dirs += \
 #	libcamera_external
 #else ifeq ($(BOARD_FRONT_CAMERA_USES_EXTERNAL_CAMERA), true)
-#exynos8890_dirs += \
+#exynos7420_dirs += \
 #	libcamera_external
 #else
-#exynos8890_dirs += \
+#exynos7420_dirs += \
 #	libcamera \
 #	libcamera3 \
 #	libcameraInterface
 #endif
 
-include $(call all-named-subdir-makefiles,$(exynos8890_dirs))
+include $(call all-named-subdir-makefiles,$(exynos7420_dirs))
 
 endif
 endif
