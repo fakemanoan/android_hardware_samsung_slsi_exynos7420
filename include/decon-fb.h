@@ -23,6 +23,7 @@
 #define MAX_DECON_EXT_WIN	(5)
 
 #define DECON_WIN_UPDATE_IDX MAX_DECON_WIN
+#define IDMA_MAX IDMA_G3
 #define MAX_BUF_PLANE_CNT (3)
 typedef unsigned int u32;
 #if defined(USES_ARCH_ARM64)
