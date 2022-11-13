@@ -100,20 +100,6 @@ enum decon_blending {
 	DECON_BLENDING_COVERAGE = 2,
 	DECON_BLENDING_MAX = 3,
 };
-struct exynos_hdmi_data {
-	enum {
-		EXYNOS_HDMI_STATE_PRESET = 0,
-		EXYNOS_HDMI_STATE_ENUM_PRESET,
-		EXYNOS_HDMI_STATE_CEC_ADDR,
-		EXYNOS_HDMI_STATE_HDCP,
-		EXYNOS_HDMI_STATE_AUDIO,
-	} state;
-	struct	v4l2_dv_timings timings;
-	struct	v4l2_enum_dv_timings etimings;
-	__u32	cec_addr;
-	__u32	audio_info;
-	int	hdcp;
-};
 enum vpp_rotate {
 	VPP_ROT_NORMAL = 0x0,
 	VPP_ROT_XFLIP,
