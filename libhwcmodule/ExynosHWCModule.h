@@ -33,8 +33,8 @@
 
 #define DUAL_VIDEO_OVERLAY_SUPPORT
 
-/* Max number windows available in Exynos7570 is 3. */
-#define NUM_AVAILABLE_HW_WINDOWS	3
+/* Max number windows available in Exynos7420 is 7. */
+#define NUM_AVAILABLE_HW_WINDOWS	7
 
 /* IDMA_G2 and IDMA_G3 cause decon register crashes on Exynos7420 */
 #define DISABLE_IDMA_SECURE
