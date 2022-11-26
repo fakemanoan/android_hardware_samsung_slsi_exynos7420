@@ -22,11 +22,11 @@
 #define DECON_WIN_UPDATE_IDX MAX_DECON_WIN
 #define MAX_BUF_PLANE_CNT (3)
 typedef unsigned int u32;
-//#if defined(USES_ARCH_ARM64) || defined(USES_DECON_64BIT_ADDRESS)
+#if defined(USES_ARCH_ARM64) || defined(USES_DECON_64BIT_ADDRESS)
 typedef uint64_t dma_addr_t;
-//#else
-//typedef uint32_t dma_addr_t;
-//#endif
+#else
+typedef uint32_t dma_addr_t;
+#endif
 struct decon_win_rect {
   int x;
   int y;
@@ -88,8 +88,6 @@ enum decon_pixel_format {
   DECON_PIXEL_FORMAT_YUV420M,
   DECON_PIXEL_FORMAT_YVU420M,
 
-  DECON_PIXEL_FORMAT_NV21M_FULL,
-
   DECON_PIXEL_FORMAT_MAX,
 };
 enum decon_blending {
@@ -97,20 +95,6 @@ enum decon_blending {
   DECON_BLENDING_PREMULT = 1,
   DECON_BLENDING_COVERAGE = 2,
   DECON_BLENDING_MAX = 3,
-};
-struct exynos_hdmi_data {
-  enum {
-    EXYNOS_HDMI_STATE_PRESET = 0,
-    EXYNOS_HDMI_STATE_ENUM_PRESET,
-    EXYNOS_HDMI_STATE_CEC_ADDR,
-    EXYNOS_HDMI_STATE_HDCP,
-    EXYNOS_HDMI_STATE_AUDIO,
-  } state;
-  struct v4l2_dv_timings *timings;
-  struct v4l2_enum_dv_timings *etimings;
-  __u32 cec_addr;
-  __u32 audio_info;
-  int hdcp;
 };
 enum vpp_rotate {
   VPP_ROT_NORMAL = 0x0,
@@ -162,17 +146,19 @@ struct decon_win_config {
   union {
     __u32 color;
     struct {
-      int fd_idma[3];
-      int fence_fd;
-      int plane_alpha;
-      enum decon_blending blending;
-      enum decon_idma_type idma_type;
-      enum decon_pixel_format format;
-      struct vpp_params vpp_parm;
-      struct decon_win_rect block_area;
-      struct decon_win_rect transparent_area;
-      struct decon_win_rect opaque_area;
-      struct decon_frame src;
+	int				fd_idma[3];
+	int				fence_fd;
+	int				plane_alpha;
+	enum decon_blending		blending;
+	enum decon_idma_type		idma_type;
+	enum decon_pixel_format		format;
+	struct vpp_params		vpp_parm;
+	/* no read area of IDMA */
+	struct decon_win_rect		block_area;
+	struct decon_win_rect           transparent_area;
+	struct decon_win_rect           opaque_area;
+	/* source framebuffer coordinates */
+	struct decon_frame		src;
     };
   };
   struct decon_frame dst;
@@ -190,7 +176,5 @@ struct decon_win_config_data {
 #define S3CFB_GET_ION_USER_HANDLE _IOWR('F', 208, struct s3c_fb_user_ion_client)
 #define S3CFB_WIN_CONFIG _IOW('F', 209, struct decon_win_config_data)
 #define S3CFB_WIN_PSR_EXIT _IOW('F', 210, int)
-#define EXYNOS_GET_HDMI_CONFIG _IOW('F', 220, struct exynos_hdmi_data)
-#define EXYNOS_SET_HDMI_CONFIG _IOW('F', 221, struct exynos_hdmi_data)
 
 #endif
