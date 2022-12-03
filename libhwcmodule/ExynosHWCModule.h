@@ -34,40 +34,10 @@
 #define DUAL_VIDEO_OVERLAY_SUPPORT
 
 /* Max number windows available in Exynos7570 is 3. */
-#define NUM_AVAILABLE_HW_WINDOWS	3
+#define NUM_AVAILABLE_HW_WINDOWS	7
 
 /* IDMA_G2 and IDMA_G3 cause decon register crashes on Exynos7420 */
 #define DISABLE_IDMA_SECURE
-
-#ifdef FIMD_BW_OVERLAP_CHECK
-const size_t MAX_NUM_FIMD_DMA_CH = 3;
-const uint32_t FIMD_DMA_CH_IDX[] = {0, 1, 2};
-const uint32_t FIMD_DMA_CH_BW_SET1[MAX_NUM_FIMD_DMA_CH] = {1920 * 1080, 1920 * 1080, 1920 * 1080};
-const uint32_t FIMD_DMA_CH_BW_SET2[MAX_NUM_FIMD_DMA_CH] = {1920 * 1200, 1920 * 1200, 1920 * 1200};
-const uint32_t FIMD_DMA_CH_OVERLAP_CNT_SET1[MAX_NUM_FIMD_DMA_CH] = {1, 1, 1};
-const uint32_t FIMD_DMA_CH_OVERLAP_CNT_SET2[MAX_NUM_FIMD_DMA_CH] = {1, 1, 1};
-
-/*
- * TODO: All channels are enabled for WUXGA channels. Need to check
- * if this is supported. If yes disable BW CHK else fine tune.
- */
-
-inline void fimd_bw_overlap_limits_init(int xres, int yres,
-            uint32_t *fimd_dma_chan_max_bw, uint32_t *fimd_dma_chan_max_overlap_cnt)
-{
-    if (xres * yres > 1920 * 1080) {
-        for (size_t i = 0; i < MAX_NUM_FIMD_DMA_CH; i++) {
-            fimd_dma_chan_max_bw[i] = FIMD_DMA_CH_BW_SET2[i];
-            fimd_dma_chan_max_overlap_cnt[i] = FIMD_DMA_CH_OVERLAP_CNT_SET2[i];
-        }
-    } else {
-        for (size_t i = 0; i < MAX_NUM_FIMD_DMA_CH; i++) {
-            fimd_dma_chan_max_bw[i] = FIMD_DMA_CH_BW_SET1[i];
-            fimd_dma_chan_max_overlap_cnt[i] = FIMD_DMA_CH_OVERLAP_CNT_SET1[i];
-        }
-    }
-}
-#endif
 
 const size_t GSC_DST_W_ALIGNMENT_RGB888 = 1;
 const size_t GSC_DST_CROP_W_ALIGNMENT_RGB888 = 1;
@@ -84,20 +54,20 @@ const size_t WFD_GSC_IDX = 1;
 const size_t WFD_EXT_MPP_IDX = 1;
 
 const int FIMD_GSC_USAGE_IDX[] = {FIMD_GSC_IDX};
-const int AVAILABLE_GSC_UNITS[] = { 0, 1};
+const int AVAILABLE_GSC_UNITS[] = { 0, 2, 1, 1, 5, 4 };
 
 #define MPP_VG          0
 #define MPP_VGR         2
 #define MPP_MSC         4
-#define MPP_MSC_1	5
+#define MPP_VPP_G       10
 
-#define EXTERNAL_MPPS   2
+#define EXTERNAL_MPPS   5
 
 struct exynos_mpp_t {
     int type;
     unsigned int index;
 };
 
-const exynos_mpp_t AVAILABLE_EXTERNAL_MPP_UNITS[] = {{MPP_MSC, 0}, {MPP_MSC_1, 0} };
+const exynos_mpp_t AVAILABLE_EXTERNAL_MPP_UNITS[] = {{MPP_MSC, 0}, {MPP_MSC, 0}, {MPP_MSC, 0}, {MPP_MSC, 0}, {MPP_MSC, 0}};
 
 #endif
