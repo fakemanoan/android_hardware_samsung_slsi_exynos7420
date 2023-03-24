@@ -43,6 +43,10 @@
 #define VSYNC_DEV_PREFIX "/sys/devices/"
 #define VSYNC_DEV_NAME  "13930000.decon_fb/vsync"
 
+// confirmed by decompiling stock hwc
+#define DECON_WB_DEV_NAME   "/dev/graphics/fb1"
+#define DECON_EXT_BASE_WINDOW   0
+#define DECON_WB_SUBDEV_NAME   "exynos-decon1"
 //
 // confirmed by decompiling stock-HWC/using default values
 //
