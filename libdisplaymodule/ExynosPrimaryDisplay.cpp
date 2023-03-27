@@ -6,7 +6,7 @@
 #include "ExynosHWCDebug.h"
 
 ExynosPrimaryDisplay::ExynosPrimaryDisplay(int __unused numMPPs, struct exynos5_hwc_composer_device_1_t *pdev)
-    :   ExynosOverlayDisplay(0, pdev)
+    :   ExynosOverlayDisplay(numMPPs, pdev)
 {
     mInternalDMAs.clear();
     mCheckIDMAMPP = new ExynosMPPModule(NULL, MPP_DEFAULT, 0);
