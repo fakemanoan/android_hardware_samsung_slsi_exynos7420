@@ -46,19 +46,6 @@ void ExynosPrimaryDisplay::getIDMAMinSize(hwc_layer_1_t &layer, int *w, int *h)
 
 void ExynosPrimaryDisplay::determineYuvOverlay(hwc_display_contents_1_t *contents)
 {
-    mHwc->hwc_ctrl.max_num_ovly = NUM_HW_WINDOWS;
-    for (size_t i = 0; i < contents->numHwLayers; i++) {
-        hwc_layer_1_t &layer = contents->hwLayers[i];
-        if (layer.handle) {
-            private_handle_t *handle = private_handle_t::dynamicCast(layer.handle);
-            if (!mForceFb && !isFormatRgb(handle->format)) {
-                if (handle->flags & GRALLOC_USAGE_HW_CAMERA_MASK) {
-                        mHwc->hwc_ctrl.max_num_ovly = 6; // plus one additional SecureDMA window
-                        break;
-                    }
-            }
-        }
-    }
     ExynosDisplay::determineYuvOverlay(contents);
 }
 
