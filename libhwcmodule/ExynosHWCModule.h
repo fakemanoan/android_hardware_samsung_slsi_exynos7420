@@ -136,10 +136,13 @@ struct exynos_mpp_t {
 // Order changed to work around the VG-channels (which do not have working blending)
 //
 // Current state:
-//     - 6 working HW windows (should be enough for most things)
+//     - 7 working HW windows (should be enough for most things)
 //     - VG-channels have been bound to non-blending layers only,
 //       giving us one more free HW window + one reserve for another
 //       non-blending layer (VG1), VG0 normally is bound to window #0
+//     - VPP_G2 must only be assigned to window #6 otherwise the decon
+//       driver crashes, and we get a black screen until VPP_G2 is no
+//       longer assigned.
 //
 //  - VG          --  Working as expected, unable to work with blending
 //    - VG0         -- Normally bound to window #0 (background-layer)
@@ -147,10 +150,10 @@ struct exynos_mpp_t {
 //  - VGR         --  Fully working and stable
 //    - VGR0
 //    - VGR1
-//  - VPP_G       --  Partially working and stable
-//    - VPP_G0      --  Fully working and stable
-//    - VPP_G1      --  Same as VPP_G0
-//    - VPP_G2      --  Leads to DECON DMA Register crashes/freezes
+//  - VPP_G       --  Working
+//    - VPP_G0
+//    - VPP_G1
+//    - VPP_G2      -- can only be assigned to window index 6
 //
 const exynos_mpp_t AVAILABLE_INTERNAL_MPP_UNITS[] = {{MPP_VG, 0}, {MPP_VG, 1}, {MPP_VGR, 0}, {MPP_VGR, 1}, {MPP_VPP_G, 0}, {MPP_VPP_G, 1}, {MPP_VPP_G, 2}};
 
@@ -193,10 +196,9 @@ static int MPP_VPP_G_TYPE(const int &index)
         return IDMA_G0;
     case 1:
         return IDMA_G1;
-
-    // following IDMA-channels lead to DECON DMA crashes/freezes
     case 2:
         return IDMA_G2;
+        // IDMA_G3 crashes decon driver
     case 3:
         return IDMA_G3;
 
