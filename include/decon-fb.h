@@ -15,6 +15,7 @@
 #define MAX_DECON_WIN (7)
 #define DECON_WIN_UPDATE_IDX MAX_DECON_WIN
 #define MAX_BUF_PLANE_CNT (3)
+#define DECON_PAD_WB (6)
 typedef unsigned int u32;
 #ifdef USES_ARCH_ARM64
 typedef uint64_t dma_addr_t;
