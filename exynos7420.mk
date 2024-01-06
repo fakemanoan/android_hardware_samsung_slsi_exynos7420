@@ -16,18 +16,8 @@
 
 # video codecs
 PRODUCT_PACKAGES := \
-	libOMX.Exynos.MPEG4.Decoder \
-	libOMX.Exynos.AVC.Decoder \
-	libOMX.Exynos.WMV.Decoder \
-	libOMX.Exynos.VP8.Decoder \
-	libOMX.Exynos.HEVC.Decoder \
-	libOMX.Exynos.MPEG4.Encoder \
-	libOMX.Exynos.AVC.Encoder \
-	libOMX.Exynos.VP8.Encoder \
-	libOMX.Exynos.HEVC.Encoder
+
 
 # stagefright and device specific modules
 PRODUCT_PACKAGES += \
-	libstagefrighthw \
-	libExynosOMX_Core \
-	libExynosOMX_Resourcemanager
+
