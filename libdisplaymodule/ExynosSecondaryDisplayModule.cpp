@@ -2,6 +2,7 @@
 #include "ExynosHWCModule.h"
 #include "ExynosHWCUtils.h"
 #include "ExynosMPPModule.h"
+#include "ExynosHWCDebug.h"
 
 ExynosSecondaryDisplayModule::ExynosSecondaryDisplayModule(struct exynos5_hwc_composer_device_1_t *pdev) :
     ExynosSecondaryDisplay(pdev)

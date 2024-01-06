@@ -8,11 +8,9 @@ class ExynosDisplay;
 class ExynosMPPModule : public ExynosMPP {
     public:
         ExynosMPPModule();
-        ExynosMPPModule(ExynosDisplay *display, int gscIndex);
         ExynosMPPModule(ExynosDisplay *display, unsigned int mppType, unsigned int mppIndex);
-        virtual bool isFormatSupportedByMPP(int format);
-    protected:
-        virtual int getBufferUsage(private_handle_t *srcHandle);
+        virtual int isProcessingSupported(hwc_layer_1_t &layer, int dst_format);
+        virtual int getMaxDownscale(hwc_layer_1_t &layer);
 };
 
 #endif
